@@ -1,0 +1,40 @@
+.todo_input__body {
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 25px;
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 5px;
+}
+
+.body_todo__inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.body_todo__inputs:not(:last-child) {
+  margin-bottom: 15px;    
+}
+
+.body_todo__input {
+  width: 100%;
+}
+
+.body_todo__input label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 15px;
+}
+
+.body_todo__input input {
+  font-size: 15px;
+  padding: 10px 5px;
+  border-radius: 2px;
+  border: 1px solid black;
+}
+
+.button {
+  width: 100%;
+  text-align: right;
+}

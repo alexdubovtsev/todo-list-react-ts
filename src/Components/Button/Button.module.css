@@ -1,0 +1,31 @@
+.Button {
+  border-radius: 5px;
+  padding: 8px 20px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.3s ease 0s;
+}
+
+.Button_red {
+  border: 1px solid rgba(143, 26, 26, 0.801);
+  color: rgba(224, 30, 30, 0.801);
+}
+.Button_red:hover {
+  border: 1px solid rgba(143, 26, 26, 0.401);
+}
+
+.Button_orange {
+  border: 1px solid rgba(236, 133, 15, 0.87);
+  color: rgba(243, 180, 43, 0.801);
+}
+.Button_orange:hover {
+  border: 1px solid rgba(241, 159, 65, 0.47);
+}
+
+.Button_blue {
+  border: 1px solid rgba(61, 134, 202, 0.932);
+  color: rgba(71, 68, 233, 0.801);
+}
+.Button_blue:hover {
+  border: 1px solid rgba(61, 134, 202, 0.532);
+}

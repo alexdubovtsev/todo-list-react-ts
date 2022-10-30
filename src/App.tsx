@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./Styles/App.css";
+import React, { useState } from "react";
+import { ITodo } from "./Types/todos";
+import Header from "./Components/Header/Header";
+import TodoInput from "./Components/TodoInput/TodoInput";
 
-function App() {
+const App = () => {
+  const DEFAULT_TODO_LIST: ITodo[] = [
+    { id: 1, title: "task 1", description: "description 1", completed: false },
+    { id: 2, title: "task 2", description: "description 2", completed: false },
+    {
+      id: 3,
+      title: "task 3",
+      description:
+        "so long task description 3 so long task description so long task description so long task description so long task description",
+      completed: true,
+    },
+  ];
+
+  const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
+
+  const addTodo = ({ title, description }: Omit<ITodo, "completed" | "id">) => {
+    setTodos([
+      ...todos,
+      {
+        id: todos[todos.length - 1].id + 1,
+        title,
+        description,
+        completed: false,
+      },
+    ]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header todoCount={todos.length} />
+      <TodoInput addTodo={addTodo} />
     </div>
   );
-}
+};
 
 export default App;
