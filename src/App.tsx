@@ -19,6 +19,11 @@ const App = () => {
   ];
 
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
+  const [todoIdForEdit, setTodoIdForEdit] = useState<ITodo["id"] | null>(null);
+
+  const selectTodoIdForEdit = (id: ITodo["id"]) => {
+    setTodoIdForEdit(id);
+  };
 
   const addTodo = ({ title, description }: Omit<ITodo, "completed" | "id">) => {
     setTodos([
@@ -47,11 +52,33 @@ const App = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const changeTodo = ({
+    title,
+    description,
+  }: Omit<ITodo, "completed" | "id">) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === todoIdForEdit) {
+          return { ...todo, title, description };
+        }
+        return todo;
+      })
+    );
+    setTodoIdForEdit(null);
+  };
+
   return (
     <div>
       <Header todoCount={todos.length} />
-      <TodoInput addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} checkTodo={checkTodo} />
+      <TodoInput mode="add" addTodo={addTodo} />
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodo}
+        checkTodo={checkTodo}
+        todoIdForEdit={todoIdForEdit}
+        selectTodoIdForEdit={selectTodoIdForEdit}
+        changeTodo={changeTodo}
+      />
     </div>
   );
 };

@@ -7,9 +7,10 @@ interface TodoItemProps {
   todo: ITodo;
   checkTodo: (id: ITodo["id"]) => void;
   deleteTodo: (id: ITodo["id"]) => void;
+  selectTodoIdForEdit: (id: ITodo["id"]) => void;
 }
 
-const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo, deleteTodo }) => {
+const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo, deleteTodo, selectTodoIdForEdit }) => {
   return (
     <div className={classes.todo_item}>
       <div>
@@ -33,7 +34,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo, deleteTodo }) => {
         </div>
       </div>
       <div className={classes.todo_item__btns}>
-        <Button color="blue">Edit</Button>
+        <Button color="blue" onClick={()=> selectTodoIdForEdit(todo.id)}>Edit</Button>
         <Button color="red" onClick={() => deleteTodo(todo.id)}>Delete</Button>
       </div>
     </div>

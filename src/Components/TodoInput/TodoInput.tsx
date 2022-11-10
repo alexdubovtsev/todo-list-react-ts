@@ -8,12 +8,22 @@ const DEFAULT_TODO = {
   description: "",
 };
 
-interface TodoInputProps {
+interface AddTodoInputProps {
+  mode: "add";
   addTodo: ({ title, description }: Omit<ITodo, "completed" | "id">) => void;
 }
 
-const TodoInput: FC<TodoInputProps> = ({ addTodo }) => {
-  const [todo, setTodo] = useState(DEFAULT_TODO);
+interface EditTodoInputProps {
+  mode: "edit";
+  editTodo: Omit<ITodo, "completed" | "id">;
+  changeTodo: ({ title, description }: Omit<ITodo, "completed" | "id">) => void;
+}
+
+type TodoInputProps = AddTodoInputProps | EditTodoInputProps;
+
+const TodoInput: FC<TodoInputProps> = (props) => {
+  const isEdit = props.mode === "edit";
+  const [todo, setTodo] = useState(isEdit ? props.editTodo : DEFAULT_TODO);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,7 +31,11 @@ const TodoInput: FC<TodoInputProps> = ({ addTodo }) => {
   };
 
   const clickHandler = () => {
-    addTodo({ title: todo.title, description: todo.description });
+    const todoItem = { title: todo.title, description: todo.description };
+    if (isEdit) {
+      return props.changeTodo(todoItem);
+    }
+    props.addTodo(todoItem);
     setTodo(DEFAULT_TODO);
   };
 
@@ -55,9 +69,16 @@ const TodoInput: FC<TodoInputProps> = ({ addTodo }) => {
       </div>
       <div>
         <div className={classes.button}>
-          <Button color="blue" onClick={clickHandler}>
-            Add
-          </Button>
+          {!isEdit && (
+            <Button color="blue" onClick={clickHandler}>
+              Add
+            </Button>
+          )}
+          {isEdit && (
+            <Button color="orange" onClick={clickHandler}>
+              Edit
+            </Button>
+          )}
         </div>
       </div>
     </div>
