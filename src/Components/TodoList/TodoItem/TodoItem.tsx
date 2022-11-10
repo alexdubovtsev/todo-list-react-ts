@@ -6,9 +6,10 @@ import classes from "./TodoItem.module.css";
 interface TodoItemProps {
   todo: ITodo;
   checkTodo: (id: ITodo["id"]) => void;
+  deleteTodo: (id: ITodo["id"]) => void;
 }
 
-const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo }) => {
+const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo, deleteTodo }) => {
   return (
     <div className={classes.todo_item}>
       <div>
@@ -33,7 +34,7 @@ const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo }) => {
       </div>
       <div className={classes.todo_item__btns}>
         <Button color="blue">Edit</Button>
-        <Button color="red">Delete</Button>
+        <Button color="red" onClick={() => deleteTodo(todo.id)}>Delete</Button>
       </div>
     </div>
   );

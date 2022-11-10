@@ -43,11 +43,15 @@ const App = () => {
     );
   };
 
+  const deleteTodo = (id: ITodo["id"]) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div>
       <Header todoCount={todos.length} />
       <TodoInput addTodo={addTodo} />
-      <TodoList todos={todos} checkTodo={checkTodo}/>
+      <TodoList todos={todos} deleteTodo={deleteTodo} checkTodo={checkTodo} />
     </div>
   );
 };

@@ -4,14 +4,15 @@ import TodoItem from "./TodoItem/TodoItem";
 
 interface TodoListProps {
   todos: ITodo[];
-  checkTodo: (id: ITodo["id"]) => void
+  checkTodo: (id: ITodo["id"]) => void,
+  deleteTodo: (id: ITodo["id"]) => void,
 }
 
-const TodoList: FC<TodoListProps> = ({ todos, checkTodo }) => {
+const TodoList: FC<TodoListProps> = ({ todos, checkTodo, deleteTodo }) => {
   return (
     <div>
       {todos.map((todo) => (
-        <TodoItem checkTodo={checkTodo} todo={todo}/>
+        <TodoItem key={todo.id} deleteTodo={deleteTodo} checkTodo={checkTodo} todo={todo}/>
       ))}
     </div>
   );
