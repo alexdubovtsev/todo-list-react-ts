@@ -5,19 +5,25 @@ import classes from "./TodoItem.module.css";
 
 interface TodoItemProps {
   todo: ITodo;
+  checkTodo: (id: ITodo["id"]) => void;
 }
 
-const TodoItem: FC<TodoItemProps> = ({ todo }) => {
+const TodoItem: FC<TodoItemProps> = ({ todo, checkTodo }) => {
   return (
     <div className={classes.todo_item}>
       <div>
         <div
           aria-hidden
-          style={{
-            opacity: todo.completed ? 0.5 : 1,
-            textDecoration: todo.completed ? 'line-through' : 'none',
-          }}
-          className={classes.todo_item__title}
+          // style={{
+          //   opacity: todo.completed ? 0.5 : 1,
+          //   textDecoration: todo.completed ? "line-through" : "none",
+          // }}
+          className={
+            todo.completed
+              ? `${classes.todo_item__title} ${classes.todo_item__title_complited}`
+              : `${classes.todo_item__title}`
+          }
+          onClick={() => checkTodo(todo.id)}
         >
           {todo.title}
         </div>

@@ -32,11 +32,22 @@ const App = () => {
     ]);
   };
 
+  const checkTodo = (id: ITodo["id"]) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      })
+    );
+  };
+
   return (
     <div>
       <Header todoCount={todos.length} />
       <TodoInput addTodo={addTodo} />
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} checkTodo={checkTodo}/>
     </div>
   );
 };

@@ -14,6 +14,32 @@
   cursor: pointer;
   margin-bottom: 15px;
   transition: all 0.3s ease 0s;
+  position: relative;
+  display: inline-block;
+}
+.todo_item__title_complited {
+  opacity: 0.45;
+  position: relative;
+  transition: all 0.3s ease 0s;
+}
+.todo_item__title_complited::before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  background: rgb(179, 6, 6);
+  bottom: 0;
+  left: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease 0.1s;
+  animation: complited 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+@keyframes complited {
+	0% {
+		width: 0%;
+	}
+	100% {
+		width: 100%;
+	}
 }
 
 .todo_item__description {
