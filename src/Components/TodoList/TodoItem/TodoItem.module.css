@@ -1,0 +1,28 @@
+.todo_item {
+  background-color: #fff;
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 5px;
+}
+.todo_item:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.todo_item__title {
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.3s ease 0s;
+}
+
+.todo_item__description {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.todo_item__btns {
+  display: flex;
+  justify-content: right;
+  gap: 5px;
+}

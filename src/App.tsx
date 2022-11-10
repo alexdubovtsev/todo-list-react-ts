@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ITodo } from "./Types/todos";
 import Header from "./Components/Header/Header";
 import TodoInput from "./Components/TodoInput/TodoInput";
+import TodoList from "./Components/TodoList/TodoList";
 
 const App = () => {
   const DEFAULT_TODO_LIST: ITodo[] = [
@@ -35,6 +36,7 @@ const App = () => {
     <div>
       <Header todoCount={todos.length} />
       <TodoInput addTodo={addTodo} />
+      <TodoList todos={todos}/>
     </div>
   );
 };
