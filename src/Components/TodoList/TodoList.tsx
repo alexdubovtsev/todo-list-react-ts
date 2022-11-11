@@ -1,25 +1,13 @@
 import React, { FC, useState } from "react";
 import { ITodo } from "../../Types/todos";
+import useTodo from "../../Utils/Contextes/useTodo";
 import TodoInput from "../TodoInput/TodoInput";
 import TodoItem from "./TodoItem/TodoItem";
 
-interface TodoListProps {
-  todos: ITodo[];
-  todoIdForEdit: ITodo["id"] | null;
-  checkTodo: (id: ITodo["id"]) => void;
-  deleteTodo: (id: ITodo["id"]) => void;
-  selectTodoIdForEdit: (id: ITodo["id"]) => void;
-  changeTodo: ({ title, description }: Omit<ITodo, "completed" | "id">) => void;
-}
 
-const TodoList: FC<TodoListProps> = ({
-  todos,
-  checkTodo,
-  deleteTodo,
-  todoIdForEdit,
-  selectTodoIdForEdit,
-  changeTodo,
-}) => {
+
+const TodoList: FC = () => {
+  const {todos, todoIdForEdit, checkTodo, deleteTodo, selectTodoIdForEdit} = useTodo();
   return (
     <div>
       {todos.map((todo) => {
@@ -27,7 +15,6 @@ const TodoList: FC<TodoListProps> = ({
           return (
             <TodoInput
               key={todo.id}
-              changeTodo={changeTodo}
               editTodo={{
                 title: todo.title,
                 description: todo.description,

@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import Button from "../Button/Button";
 import classes from "./TodoInput.module.css";
 import { ITodo } from "../../Types/todos";
+import useTodo from "../../Utils/Contextes/useTodo";
 
 const DEFAULT_TODO = {
   title: "",
@@ -10,18 +11,21 @@ const DEFAULT_TODO = {
 
 interface AddTodoInputProps {
   mode: "add";
-  addTodo: ({ title, description }: Omit<ITodo, "completed" | "id">) => void;
 }
 
 interface EditTodoInputProps {
   mode: "edit";
   editTodo: Omit<ITodo, "completed" | "id">;
-  changeTodo: ({ title, description }: Omit<ITodo, "completed" | "id">) => void;
 }
 
 type TodoInputProps = AddTodoInputProps | EditTodoInputProps;
 
+
+
 const TodoInput: FC<TodoInputProps> = (props) => {
+
+  const {changeTodo, addTodo} = useTodo();
+
   const isEdit = props.mode === "edit";
   const [todo, setTodo] = useState(isEdit ? props.editTodo : DEFAULT_TODO);
 
@@ -33,9 +37,9 @@ const TodoInput: FC<TodoInputProps> = (props) => {
   const clickHandler = () => {
     const todoItem = { title: todo.title, description: todo.description };
     if (isEdit) {
-      return props.changeTodo(todoItem);
+      return changeTodo(todoItem);
     }
-    props.addTodo(todoItem);
+    addTodo(todoItem);
     setTodo(DEFAULT_TODO);
   };
 
