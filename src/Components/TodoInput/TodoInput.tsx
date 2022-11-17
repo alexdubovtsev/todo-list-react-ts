@@ -48,25 +48,27 @@ const TodoInput: FC<TodoInputProps> = (props) => {
       <div className={classes.body_todo__inputs}>
         <div className={classes.body_todo__input}>
           <label htmlFor="title">
-            <div>Task</div>
+            {/* <div>Task</div> */}
             <input
               type="text"
               id="title"
               value={todo.title}
               name="title"
               onChange={changeHandler}
+              placeholder="Type title here..."
             />
           </label>
         </div>
         <div className={classes.body_todo__input}>
           <label htmlFor="name">
-            <div>Description</div>
+            {/* <div>Description</div> */}
             <input
               type="text"
               id="description"
               value={todo.description}
               name="description"
               onChange={changeHandler}
+              placeholder="Type description here..."
             />
           </label>
         </div>
@@ -75,7 +77,7 @@ const TodoInput: FC<TodoInputProps> = (props) => {
         <div className={classes.button}>
           {!isEdit && (
             <Button color="blue" onClick={clickHandler}>
-              Add
+              Add new task
             </Button>
           )}
           {isEdit && (

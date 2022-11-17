@@ -8,15 +8,15 @@ interface TodoProviderProps {
 
 export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
   const DEFAULT_TODO_LIST: ITodo[] = [
-    { id: 1, title: "task 1", description: "description 1", completed: false },
-    { id: 2, title: "task 2", description: "description 2", completed: false },
-    {
-      id: 3,
-      title: "task 3",
-      description:
-        "so long task description 3 so long task description so long task description so long task description so long task description",
-      completed: true,
-    },
+     { id: 1, title: "task 1", description: "description 1", completed: false },
+    // { id: 2, title: "task 2", description: "description 2", completed: false },
+    // {
+    //   id: 3,
+    //   title: "task 3",
+    //   description:
+    //     "so long task description 3 so long task description so long task description so long task description so long task description",
+    //   completed: true,
+    // },
   ];
 
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
@@ -25,12 +25,12 @@ export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
   const selectTodoIdForEdit = (id: ITodo["id"]) => {
     setTodoIdForEdit(id);
   };
-
+ 
   const addTodo = ({ title, description }: Omit<ITodo, "completed" | "id">) => {
     setTodos([
       ...todos,
       {
-        id: todos[todos.length - 1].id + 1,
+        id: todos.length == 0 ? 0 : todos[todos.length - 1].id + 1,
         title,
         description,
         completed: false,

@@ -4,6 +4,7 @@
   cursor: pointer;
   background-color: #fff;
   transition: all 0.3s ease 0s;
+  font-size: 16px;
 }
 
 .Button_red {
@@ -12,14 +13,16 @@
 }
 .Button_red:hover {
   border: 1px solid rgba(143, 26, 26, 0.401);
+  background: rgba(143, 26, 26, 0.06);
 }
 
 .Button_orange {
   border: 1px solid rgba(236, 133, 15, 0.87);
-  color: rgba(243, 180, 43, 0.801);
+  color: rgba(206, 147, 20, 0.801);
 }
 .Button_orange:hover {
   border: 1px solid rgba(241, 159, 65, 0.47);
+  background: rgba(241, 159, 65, 0.06);
 }
 
 .Button_blue {
@@ -28,4 +31,5 @@
 }
 .Button_blue:hover {
   border: 1px solid rgba(61, 134, 202, 0.532);
+  background: rgba(61, 134, 202, 0.15);
 }

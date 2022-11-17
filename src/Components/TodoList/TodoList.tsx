@@ -10,6 +10,9 @@ const TodoList: FC = () => {
   const {todos, todoIdForEdit, checkTodo, deleteTodo, selectTodoIdForEdit} = useTodo();
   return (
     <div>
+      {!todos.length && 
+      <p style={{textAlign: 'center'}}>You have no tasks to complete.</p>}
+
       {todos.map((todo) => {
         if (todo.id === todoIdForEdit)
           return (

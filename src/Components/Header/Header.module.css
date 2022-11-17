@@ -3,6 +3,7 @@
 }
 
 .header__title {
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 0.4em;
 }

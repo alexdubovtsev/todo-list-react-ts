@@ -9,7 +9,7 @@ import { TodoProvider } from "./Utils";
 const App = () => {
   return (
     <TodoProvider>
-      <div>
+      <div >
         <Header />
         <TodoInput mode="add" />
         <TodoList />

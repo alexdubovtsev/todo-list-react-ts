@@ -8,7 +8,7 @@ const Header: FC = () => {
   return (
     <div className={classes.header__container}>
       <div className={classes.header__title}>
-        Todo list <b>{todos.length}</b> task(s)
+        You have <b style={{color: '#c93d4b'}}>{todos.length}</b> ToDo task(s)
       </div>
     </div>
   );

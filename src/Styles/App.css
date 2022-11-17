@@ -4,7 +4,11 @@ body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 18px;
   color: #343434;
-  background: #F5F5F5;
+  background: #3c0a8bd2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -17,24 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.App {
-  padding: 40px 0;
-}
-
-
-.navbar {
-  width: 100%;
-  background-color: #222;
-}
-.navbar__container {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-.navbar__links {
-  display: flex;
-  gap: 20px;
+  padding: 50px;
+  background: #fff;
+  border-radius: 30px;
 }
