@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 50px;
 }
 
 .container {
@@ -18,9 +19,10 @@ body {
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* overflow: auto; */
   padding: 50px;
   background: #fff;
   border-radius: 30px;

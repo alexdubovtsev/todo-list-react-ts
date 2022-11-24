@@ -8,7 +8,7 @@ interface TodoProviderProps {
 
 export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
   const DEFAULT_TODO_LIST: ITodo[] = [
-     { id: 1, title: "task 1", description: "description 1", completed: false },
+    { id: 1, title: "task 1", description: "description 1", completed: false },
     // { id: 2, title: "task 2", description: "description 2", completed: false },
     // {
     //   id: 3,
@@ -25,7 +25,7 @@ export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
   const selectTodoIdForEdit = (id: ITodo["id"]) => {
     setTodoIdForEdit(id);
   };
- 
+
   const addTodo = ({ title, description }: Omit<ITodo, "completed" | "id">) => {
     setTodos([
       ...todos,
@@ -50,13 +50,16 @@ export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
   };
 
   const deleteTodo = (id: ITodo["id"]) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    if (window.confirm("Are you sure?")) {
+      setTodos(todos.filter((todo) => todo.id !== id));
+    }
   };
 
   const changeTodo = ({
     title,
     description,
   }: Omit<ITodo, "completed" | "id">) => {
+    
     setTodos(
       todos.map((todo) => {
         if (todo.id === todoIdForEdit) {
@@ -89,5 +92,5 @@ export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
     ]
   );
 
-  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 };

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import classes from "./TodoInput.module.css";
 import { ITodo } from "../../Types/todos";
@@ -20,16 +20,20 @@ interface EditTodoInputProps {
 
 type TodoInputProps = AddTodoInputProps | EditTodoInputProps;
 
-
-
 const TodoInput: FC<TodoInputProps> = (props) => {
-
-  const {changeTodo, addTodo} = useTodo();
+  const { changeTodo, addTodo } = useTodo();
 
   const isEdit = props.mode === "edit";
   const [todo, setTodo] = useState(isEdit ? props.editTodo : DEFAULT_TODO);
+  const editTitleInputRef = useRef<HTMLInputElement>(null)
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if(isEdit) {
+      editTitleInputRef?.current?.focus();
+    }
+  }, [isEdit])
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setTodo({ ...todo, [name]: value });
   };
@@ -51,6 +55,7 @@ const TodoInput: FC<TodoInputProps> = (props) => {
             {/* <div>Task</div> */}
             <input
               type="text"
+              ref={editTitleInputRef}
               id="title"
               value={todo.title}
               name="title"
