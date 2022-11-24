@@ -18,6 +18,7 @@
   position: relative;
   display: inline-block;
   padding: 5px 0;
+  position: relative;
 }
 .todo_item__title_complited {
   opacity: 0.45;
@@ -29,9 +30,9 @@
   position: absolute;
   height: 3px;
   background: rgb(179, 6, 6);
-  bottom: 0;
+  bottom: 50%;
   left: 0;
-  transform: translateY(-15px);
+  transform: translateY(50%);
   transition: all 0.3s ease 0.1s;
   animation: complited 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }

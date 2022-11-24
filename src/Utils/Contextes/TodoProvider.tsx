@@ -1,6 +1,7 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { ITodo } from "../../Types/todos";
 import { TodoContext } from "./TodoContext";
+import axios from "axios";
 
 interface TodoProviderProps {
   children: React.ReactNode;
@@ -8,7 +9,7 @@ interface TodoProviderProps {
 
 export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
   const DEFAULT_TODO_LIST: ITodo[] = [
-    { id: 1, title: "task 1", description: "description 1", completed: false },
+    { id: 6, title: "Task 1", description: "Description 1", completed: false },
     // { id: 2, title: "task 2", description: "description 2", completed: false },
     // {
     //   id: 3,
@@ -19,8 +20,23 @@ export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
     // },
   ];
 
-  const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
+  const [todos, setTodos] = useState<ITodo[]>(DEFAULT_TODO_LIST);
   const [todoIdForEdit, setTodoIdForEdit] = useState<ITodo["id"] | null>(null);
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  async function fetchTodos() {
+    try {
+      const response = await axios.get<ITodo[]>(
+        "https://jsonplaceholder.typicode.com/todos?_limit=5"
+      );
+      setTodos([...todos, ...response.data]);
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   const selectTodoIdForEdit = (id: ITodo["id"]) => {
     setTodoIdForEdit(id);
@@ -59,7 +75,6 @@ export const TodoProvider: FC<TodoProviderProps> = ({ children }) => {
     title,
     description,
   }: Omit<ITodo, "completed" | "id">) => {
-    
     setTodos(
       todos.map((todo) => {
         if (todo.id === todoIdForEdit) {
